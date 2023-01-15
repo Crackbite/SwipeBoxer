@@ -310,8 +310,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 99
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 5baf18a8d4d524d4ebd16bc7725eaaab, type: 2}
-  m_sharedMaterial: {fileID: 2100000, guid: 0143996e3b7ce874ab4a06db208d44ea, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d34123e415396024690e5be2b49aa186, type: 2}
+  m_sharedMaterial: {fileID: 7119043876281042307, guid: d34123e415396024690e5be2b49aa186, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -335,7 +335,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 53.85
+  m_fontSize: 46.55
   m_fontSizeBase: 83
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -345,7 +345,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: 0
+  m_characterSpacing: -8
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -2846,13 +2846,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b39d8bb29c3f258419cf15fab1ccac58, type: 3}
---- !u!4 &1752142421160809218 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5365373651414790181, guid: b39d8bb29c3f258419cf15fab1ccac58, type: 3}
-  m_PrefabInstance: {fileID: 5919276747181744935}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1228487265836081024 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4839408619659164839, guid: b39d8bb29c3f258419cf15fab1ccac58, type: 3}
+  m_PrefabInstance: {fileID: 5919276747181744935}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1752142421160809218 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5365373651414790181, guid: b39d8bb29c3f258419cf15fab1ccac58, type: 3}
   m_PrefabInstance: {fileID: 5919276747181744935}
   m_PrefabAsset: {fileID: 0}
