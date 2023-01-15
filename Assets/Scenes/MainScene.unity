@@ -7387,7 +7387,7 @@ MonoBehaviour:
   data: 0
   entries:
   - Language: Turkish
-    Text: "Seviye 3\nBa\u015Far\u0131s\u0131z"
+    Text: "Seviye 3\nAr\u0131zal\u0131"
     Object: {fileID: 0}
   - Language: English
     Text: 'Level 3
@@ -7395,7 +7395,7 @@ MonoBehaviour:
       Failed'
     Object: {fileID: 0}
   - Language: Russian
-    Text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C 3\n\u041D\u0435 \u043F\u0440\u043E\u0439\u0434\u0435\u043D"
+    Text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C 3\n\u041F\u0440\u043E\u0432\u0430\u043B\u0435\u043D"
     Object: {fileID: 0}
 --- !u!1001 &877114550
 PrefabInstance:
@@ -8356,7 +8356,7 @@ MonoBehaviour:
   data: 0
   entries:
   - Language: Russian
-    Text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C 3\r\n\u0417\u0430\u0432\u0435\u0440\u0448\u0451\u043D"
+    Text: "\u0423\u0440\u043E\u0432\u0435\u043D\u044C 3\r\n\u041F\u0440\u043E\u0439\u0434\u0435\u043D"
     Object: {fileID: 0}
   - Language: English
     Text: 'Level 3
