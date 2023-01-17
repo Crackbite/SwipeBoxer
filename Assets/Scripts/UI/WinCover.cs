@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Animator), typeof(AudioSource))]
 public class WinCover : Screen
 {
     [SerializeField] private PlayerMovement _playerMovement;
@@ -10,6 +10,7 @@ public class WinCover : Screen
     [SerializeField] private float _enableAfterWin = 0.805f;
 
     private Animator _animator;
+    private AudioSource _audioSource;
 
     private void OnEnable()
     {
@@ -22,6 +23,7 @@ public class WinCover : Screen
         Close();
         _confetti.gameObject.SetActive(false);
 
+        _audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
         _animator.enabled = false;
     }
@@ -39,6 +41,7 @@ public class WinCover : Screen
 
     private IEnumerator EnableCover()
     {
+        _audioSource.Play();
         yield return new WaitForSeconds(_enableAfterWin);
 
         Open();
