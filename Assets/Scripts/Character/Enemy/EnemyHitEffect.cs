@@ -1,10 +1,9 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(Enemy), typeof(AudioSource))]
 public class EnemyHitEffect : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _visualEffect;
-    [SerializeField] private AudioSource _audioSource;
     [SerializeField] private AudioClip[] _hitSounds;
     [SerializeField] private float _hitVolume = 0.4f;
     [SerializeField] private AudioClip _ouchSound;
@@ -13,10 +12,12 @@ public class EnemyHitEffect : MonoBehaviour
     [SerializeField] private float _pitchMax = 1.3f;
 
     private Enemy _enemy;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
         _enemy = GetComponent<Enemy>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void OnEnable()
@@ -45,11 +46,6 @@ public class EnemyHitEffect : MonoBehaviour
 
     private void PlaySound()
     {
-        if (_audioSource == null)
-        {
-            return;
-        }
-
         _audioSource.pitch = Random.Range(_pitchMin, _pitchMax);
 
         if (_hitSounds.Length > 0)

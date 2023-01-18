@@ -1,17 +1,21 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Enemy))]
+[RequireComponent(typeof(Enemy), typeof(AudioSource))]
 public class EnemyFieldEffect : MonoBehaviour
 {
     [SerializeField] private ParticleSystem _visualEffect;
     [SerializeField] private AudioClip _soundEffect;
-    [SerializeField] private AudioSource _audioSource;
 
+    private AudioSource _audioSource;
+    private float _defaultPitch;
     private Enemy _enemy;
 
     private void Awake()
     {
         _enemy = GetComponent<Enemy>();
+        _audioSource = GetComponent<AudioSource>();
+
+        _defaultPitch = _audioSource.pitch;
     }
 
     private void OnEnable()
@@ -45,7 +49,7 @@ public class EnemyFieldEffect : MonoBehaviour
             return;
         }
 
-        _audioSource.pitch = 1f;
+        _audioSource.pitch = _defaultPitch;
         _audioSource.clip = _soundEffect;
 
         _audioSource.Play();
