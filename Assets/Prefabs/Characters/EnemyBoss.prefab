@@ -1176,6 +1176,7 @@ GameObject:
   - component: {fileID: 4947017748448334230}
   - component: {fileID: 7657952456032121859}
   - component: {fileID: -8762928392274579658}
+  - component: {fileID: 5991352473066851308}
   m_Layer: 6
   m_Name: EnemyBoss
   m_TagString: Untagged
@@ -1405,6 +1406,21 @@ MonoBehaviour:
   _ouchVolume: 1
   _pitchMin: 0.9
   _pitchMax: 1.1
+--- !u!114 &5991352473066851308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3951641141606494064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cb07a9ea3f22534a832f5b753c7161a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _visualEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
+  _soundEffect: {fileID: 8300000, guid: 0b237805d69a9f747a5e0f9539ace10e, type: 3}
+  _audioSource: {fileID: 7657952456032121859}
 --- !u!1 &4031926149942748240
 GameObject:
   m_ObjectHideFlags: 0
