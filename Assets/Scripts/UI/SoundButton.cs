@@ -38,13 +38,13 @@ public class SoundButton : MonoBehaviour
 
     private void OnSoundClick()
     {
-        if (GameSettings.SoundEnabled)
+        if (GameSettings.SoundDisabled)
         {
-            TurnOffSound();
+            TurnOnSound();
         }
         else
         {
-            TurnOnSound();
+            TurnOffSound();
         }
 
         SetActualSprite();
@@ -52,31 +52,31 @@ public class SoundButton : MonoBehaviour
 
     private void SetActualSprite()
     {
-        _image.sprite = GameSettings.SoundEnabled ? _on : _off;
+        _image.sprite = GameSettings.SoundDisabled ? _off : _on;
         _image.SetNativeSize();
     }
 
     private void SetStartSnapshot()
     {
-        if (GameSettings.SoundEnabled)
+        if (GameSettings.SoundDisabled)
         {
-            _normal.TransitionTo(0f);
+            _mute.TransitionTo(0f);
         }
         else
         {
-            _mute.TransitionTo(0f);
+            _normal.TransitionTo(0f);
         }
     }
 
     private void TurnOffSound()
     {
-        GameSettings.SoundEnabled = false;
+        GameSettings.SoundDisabled = true;
         _mute.TransitionTo(_timeTransitionToMute);
     }
 
     private void TurnOnSound()
     {
-        GameSettings.SoundEnabled = true;
+        GameSettings.SoundDisabled = false;
         _normal.TransitionTo(_timeTransitionToMute);
     }
 }

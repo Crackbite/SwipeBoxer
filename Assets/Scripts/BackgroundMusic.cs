@@ -38,7 +38,7 @@ public class BackgroundMusic : MonoBehaviour
 
     private void GameEnd()
     {
-        if (GameSettings.SoundEnabled)
+        if (GameSettings.SoundDisabled == false)
         {
             _endGame.TransitionTo(_timeTransitionToEndGame);
         }
