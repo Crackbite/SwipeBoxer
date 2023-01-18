@@ -1,9 +1,13 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(AudioSource))]
 public class BackgroundMusic : MonoBehaviour
 {
     [SerializeField] private AudioClip[] _music;
+    [SerializeField] private AudioMixerSnapshot _normal;
+    [SerializeField] private AudioMixerSnapshot _endGame;
+    [SerializeField] private float _timeTransitionToEndGame = 3f;
     [SerializeField] private Player _player;
     [SerializeField] private PlayerMovement _playerMovement;
 
@@ -11,7 +15,7 @@ public class BackgroundMusic : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerMovement.FinishReached += GameEnd;
+        _playerMovement.LastHitInitiated += GameEnd;
         _player.Died += GameEnd;
     }
 
@@ -22,6 +26,7 @@ public class BackgroundMusic : MonoBehaviour
             return;
         }
 
+        _normal.TransitionTo(0f);
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = GetMusicClip();
         _audioSource.Play();
@@ -29,18 +34,18 @@ public class BackgroundMusic : MonoBehaviour
 
     private void OnDisable()
     {
-        _playerMovement.FinishReached -= GameEnd;
+        _playerMovement.LastHitInitiated -= GameEnd;
         _player.Died -= GameEnd;
+    }
+
+    private void GameEnd()
+    {
+        _endGame.TransitionTo(_timeTransitionToEndGame);
     }
 
     private AudioClip GetMusicClip()
     {
         int randomMusicIndex = Random.Range(0, _music.Length);
         return _music[randomMusicIndex];
-    }
-
-    private void GameEnd()
-    {
-        _audioSource.Stop();
     }
 }
