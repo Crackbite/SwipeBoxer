@@ -5,7 +5,6 @@ using UnityEngine.Audio;
 public class BackgroundMusic : MonoBehaviour
 {
     [SerializeField] private AudioClip[] _music;
-    [SerializeField] private AudioMixerSnapshot _normal;
     [SerializeField] private AudioMixerSnapshot _endGame;
     [SerializeField] private float _timeTransitionToEndGame = 3f;
     [SerializeField] private Player _player;
@@ -26,7 +25,6 @@ public class BackgroundMusic : MonoBehaviour
             return;
         }
 
-        _normal.TransitionTo(0f);
         _audioSource = GetComponent<AudioSource>();
         _audioSource.clip = GetMusicClip();
         _audioSource.Play();
@@ -40,7 +38,10 @@ public class BackgroundMusic : MonoBehaviour
 
     private void GameEnd()
     {
-        _endGame.TransitionTo(_timeTransitionToEndGame);
+        if (GameSettings.SoundEnabled)
+        {
+            _endGame.TransitionTo(_timeTransitionToEndGame);
+        }
     }
 
     private AudioClip GetMusicClip()
