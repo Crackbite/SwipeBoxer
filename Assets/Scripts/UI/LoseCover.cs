@@ -2,13 +2,14 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-[RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Animator), typeof(AudioSource))]
 public class LoseCover : Screen
 {
     [SerializeField] private Player _player;
     [SerializeField] private float _enableAfterLose = 0.805f;
 
     private Animator _animator;
+    private AudioSource _audioSource;
 
     private void OnEnable()
     {
@@ -20,6 +21,7 @@ public class LoseCover : Screen
     {
         Close();
 
+        _audioSource = GetComponent<AudioSource>();
         _animator = GetComponent<Animator>();
         _animator.enabled = false;
     }
@@ -39,6 +41,7 @@ public class LoseCover : Screen
     {
         yield return new WaitForSeconds(_enableAfterLose);
 
+        _audioSource.Play();
         Open();
         _animator.enabled = true;
     }

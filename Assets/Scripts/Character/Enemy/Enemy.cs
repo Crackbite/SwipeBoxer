@@ -9,8 +9,6 @@ public class Enemy : MonoBehaviour, ICharacter
     [SerializeField] private float _hideSecAfterKill = 3f;
     [SerializeField] private Material _deathMaterial;
     [SerializeField] private float _destroySecAfterHide = 2f;
-    [SerializeField] private ParticleSystem _hitEffect;
-    [SerializeField] private ParticleSystem _fieldEffect;
     [SerializeField] private PowerCanvas _powerCanvas;
 
     private EnemyAnimator _animator;
@@ -19,6 +17,8 @@ public class Enemy : MonoBehaviour, ICharacter
     private Power _power;
 
     public event UnityAction Died;
+    public event UnityAction<Vector3> PreDied;
+    public event UnityAction<Vector3> Won;
 
     private void Start()
     {
@@ -53,7 +53,7 @@ public class Enemy : MonoBehaviour, ICharacter
             if (strikerPower.TryGetComponent(out Player striker))
             {
                 Bounds colliderBounds = GetComponent<Collider>().bounds;
-                Instantiate(_fieldEffect, colliderBounds.center, Quaternion.identity);
+                Won?.Invoke(colliderBounds.center);
 
                 _animator.RunIdleToVictory();
                 striker.Die(_power);
@@ -62,8 +62,8 @@ public class Enemy : MonoBehaviour, ICharacter
             }
         }
 
-        Vector3 hitEffectPosition = collision.GetContact(collision.contactCount - 1).point;
-        Instantiate(_hitEffect, hitEffectPosition, Quaternion.identity);
+        Vector3 hitPosition = collision.GetContact(collision.contactCount - 1).point;
+        PreDied?.Invoke(hitPosition);
 
         _died = true;
         Died?.Invoke();
