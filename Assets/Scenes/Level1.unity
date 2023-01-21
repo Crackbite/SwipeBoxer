@@ -1061,10 +1061,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1807137456678076654, guid: 784410ce051ae034faa30e51249cbb5a, type: 3}
-      propertyPath: m_Spacing
-      value: 13
-      objectReference: {fileID: 0}
     - target: {fileID: 2677293137723454289, guid: 784410ce051ae034faa30e51249cbb5a, type: 3}
       propertyPath: m_IsActive
       value: 0
