@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator), typeof(AudioSource))]
 public class WinCover : Screen
@@ -36,7 +35,7 @@ public class WinCover : Screen
 
     protected override void OnButtonClick()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LevelLoader.Instance.LoadNext();
     }
 
     private IEnumerator EnableCover()

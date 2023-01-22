@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(Animator), typeof(AudioSource))]
 public class LoseCover : Screen
@@ -34,7 +33,7 @@ public class LoseCover : Screen
 
     protected override void OnButtonClick()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LevelLoader.Instance.Reload();
     }
 
     private IEnumerator EnableCover()

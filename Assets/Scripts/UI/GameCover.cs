@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameCover : Screen
 {
@@ -14,7 +13,7 @@ public class GameCover : Screen
 
     protected override void OnButtonClick()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LevelLoader.Instance.Reload();
     }
 
     private IEnumerator EnableGameCover()
