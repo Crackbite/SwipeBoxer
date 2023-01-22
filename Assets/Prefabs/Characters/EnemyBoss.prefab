@@ -1397,12 +1397,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _visualEffect: {fileID: 19858090, guid: f2ee009e61b1177489331d95174281b1, type: 3}
-  _audioSource: {fileID: 7657952456032121859}
   _hitSounds:
   - {fileID: 8300000, guid: 657a432ae55d30f469594f71878a48ea, type: 3}
   - {fileID: 8300000, guid: 0022bcb7bd47bba41aa865fdedc32c27, type: 3}
   _hitVolume: 0.4
-  _ouchSound: {fileID: 8300000, guid: 9b56ff120656e514fb9507f9c0e5f4b8, type: 3}
+  _ouchSound: {fileID: 8300000, guid: 6360e4c8591e47249b915ef58f33e5b2, type: 3}
   _ouchVolume: 1
   _pitchMin: 0.9
   _pitchMax: 1.1
@@ -1420,7 +1419,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _visualEffect: {fileID: 9002721043822003177, guid: fa2662d096cf1c34daf3e78341bbdf57, type: 3}
   _soundEffect: {fileID: 8300000, guid: 0b237805d69a9f747a5e0f9539ace10e, type: 3}
-  _audioSource: {fileID: 7657952456032121859}
 --- !u!1 &4031926149942748240
 GameObject:
   m_ObjectHideFlags: 0
