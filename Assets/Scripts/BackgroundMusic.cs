@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -26,8 +27,7 @@ public class BackgroundMusic : MonoBehaviour
         }
 
         _audioSource = GetComponent<AudioSource>();
-        _audioSource.clip = GetMusicClip();
-        _audioSource.Play();
+        StartCoroutine(Play());
     }
 
     private void OnDisable()
@@ -48,5 +48,13 @@ public class BackgroundMusic : MonoBehaviour
     {
         int randomMusicIndex = Random.Range(0, _music.Length);
         return _music[randomMusicIndex];
+    }
+
+    private IEnumerator Play()
+    {
+        yield return new WaitForEndOfFrame();
+
+        _audioSource.clip = GetMusicClip();
+        _audioSource.Play();
     }
 }
