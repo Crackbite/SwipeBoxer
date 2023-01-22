@@ -1,14 +1,13 @@
 using Lean.Localization;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class LevelNameChanger : MonoBehaviour
 {
     [SerializeField] private LeanToken _token;
 
-    private void Start()
+    private void Awake()
     {
-        int level = SceneManager.GetActiveScene().buildIndex + 1;
+        int level = LevelLoader.Instance.LevelIndex + 1;
         _token.SetValue(level.ToString());
     }
 }
