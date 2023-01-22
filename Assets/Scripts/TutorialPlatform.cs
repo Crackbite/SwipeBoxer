@@ -4,10 +4,11 @@ using UnityEngine.UI;
 [RequireComponent(typeof(Platform))]
 public class TutorialPlatform : MonoBehaviour
 {
+    [SerializeField] private int _showAtLevel = 1;
     [SerializeField] private Image _goodChoice;
     [SerializeField] private Image _badChoice;
     [SerializeField] private Power _playerPower;
-    [SerializeField] private int _showAtPower;
+    [SerializeField] private int _showWhenPlayerPower;
 
     private Image _currentInstance;
     private Platform _platform;
@@ -22,6 +23,12 @@ public class TutorialPlatform : MonoBehaviour
     private void Start()
     {
         _platform = GetComponent<Platform>();
+
+        if (LevelLoader.Instance.LevelIndex + 1 != _showAtLevel)
+        {
+            _readyForShow = true;
+            _playerPower.Changed -= PlayerPowerOnChanged;
+        }
     }
 
     private void OnTriggerEnter(Collider collision)
@@ -49,7 +56,7 @@ public class TutorialPlatform : MonoBehaviour
 
     private void PlayerPowerOnChanged(int initial, int current)
     {
-        if (_readyForShow == false || current < _showAtPower)
+        if (_readyForShow == false || current < _showWhenPlayerPower)
         {
             return;
         }
