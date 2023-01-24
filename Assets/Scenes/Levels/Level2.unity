@@ -2150,7 +2150,7 @@ PrefabInstance:
     - target: {fileID: 5245684818182780707, guid: 784410ce051ae034faa30e51249cbb5a, type: 3}
       propertyPath: _roofActiveArea
       value: 
-      objectReference: {fileID: 1862672040}
+      objectReference: {fileID: 1385582591}
     - target: {fileID: 5245684818182780733, guid: 784410ce051ae034faa30e51249cbb5a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
