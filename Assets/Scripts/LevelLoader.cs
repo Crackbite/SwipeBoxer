@@ -1,10 +1,9 @@
-using Udar.SceneManager;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
-    [SerializeField] private SceneField[] _levels;
+    [SerializeField] private string[] _levelNames;
 
     private int _sceneIndex;
 
@@ -39,12 +38,12 @@ public class LevelLoader : MonoBehaviour
 
     private void Start()
     {
+        _sceneIndex = GetSceneIndex();
+
         if (SceneManager.GetActiveScene().buildIndex > 0)
         {
             return;
         }
-
-        _sceneIndex = GetSceneIndex();
 
         DontDestroyOnLoad(gameObject);
         Load();
@@ -52,11 +51,11 @@ public class LevelLoader : MonoBehaviour
 
     private int GetSceneIndex()
     {
-        return LevelIndex - ((LevelIndex / _levels.Length) * _levels.Length);
+        return LevelIndex - ((LevelIndex / _levelNames.Length) * _levelNames.Length);
     }
 
     private void Load()
     {
-        SceneManager.LoadScene(_levels[_sceneIndex].Name);
+        SceneManager.LoadScene(_levelNames[_sceneIndex]);
     }
 }
