@@ -158,6 +158,11 @@ MonoBehaviour:
   - Level3
   - Level4
   - Level5
+  - Level6
+  - Level7
+  - Level8
+  - Level9
+  - Level10
 --- !u!4 &1498615758
 Transform:
   m_ObjectHideFlags: 0
