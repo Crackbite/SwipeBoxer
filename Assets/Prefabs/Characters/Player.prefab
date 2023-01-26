@@ -1887,7 +1887,6 @@ GameObject:
   - component: {fileID: 1623213233081321738}
   - component: {fileID: 1623213233081321737}
   - component: {fileID: 1623213233081321736}
-  - component: {fileID: 1623213233081321751}
   - component: {fileID: 1623213233081321750}
   - component: {fileID: 1623213233081321749}
   - component: {fileID: 1623213233081321730}
@@ -2053,18 +2052,6 @@ MonoBehaviour:
   _powerCanvas: {fileID: 1623213232682646131}
   _deathMaterial: {fileID: 2100000, guid: ee51f017445474c4e9a6066405c7d721, type: 2}
   _reboundForce: 3
---- !u!114 &1623213233081321751
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1623213233081321747}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e98c9891527cade48a8f2bdcd831aa37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1623213233081321750
 MonoBehaviour:
   m_ObjectHideFlags: 0
