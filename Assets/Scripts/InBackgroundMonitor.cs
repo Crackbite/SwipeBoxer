@@ -13,9 +13,19 @@ public class InBackgroundMonitor : MonoBehaviour
         WebApplication.InBackgroundChangeEvent -= OnInBackgroundChange;
     }
 
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        EnableAudio(hasFocus);
+    }
+
     private void OnInBackgroundChange(bool inBackground)
     {
-        AudioListener.pause = inBackground;
-        AudioListener.volume = inBackground ? 0f : 1f;
+        EnableAudio(inBackground == false);
+    }
+
+    private void EnableAudio(bool value)
+    {
+        AudioListener.pause = value == false;
+        AudioListener.volume = value ? 1f : 0f;
     }
 }
