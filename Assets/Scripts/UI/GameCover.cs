@@ -13,6 +13,7 @@ public class GameCover : Screen
 
     protected override void OnButtonClick()
     {
+        EventsSender.Instance.SendLevelRestartEvent(LevelLoader.Instance.LevelIndex + 1);
         LevelLoader.Instance.Reload();
     }
 

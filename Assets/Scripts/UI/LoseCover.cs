@@ -47,6 +47,7 @@ public class LoseCover : Screen
 
     private void PlayerOnDied()
     {
+        EventsSender.Instance.SendLevelFailEvent(LevelLoader.Instance.LevelIndex + 1);
         StartCoroutine(EnableCover());
     }
 }

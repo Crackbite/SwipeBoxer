@@ -72,11 +72,13 @@ public class SoundButton : MonoBehaviour
     {
         GameSettings.SoundDisabled = true;
         _mute.TransitionTo(_timeTransitionToMute);
+        EventsSender.Instance.SendSoundDisableEvent();
     }
 
     private void TurnOnSound()
     {
         GameSettings.SoundDisabled = false;
         _normal.TransitionTo(_timeTransitionToMute);
+        EventsSender.Instance.SendSoundEnableEvent();
     }
 }

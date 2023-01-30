@@ -8,6 +8,12 @@ internal static class GameSettings
         set => PlayerPrefs.SetInt("LevelIndex", value);
     }
 
+    internal static int Sessions
+    {
+        get => PlayerPrefs.GetInt("Sessions");
+        set => PlayerPrefs.SetInt("Sessions", value);
+    }
+
     internal static bool SoundDisabled
     {
         get => PlayerPrefs.GetInt("SoundDisabled") == 1;

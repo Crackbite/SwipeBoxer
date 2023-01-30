@@ -50,6 +50,7 @@ public class WinCover : Screen
 
     private void PlayerMovementOnFinishReached()
     {
+        EventsSender.Instance.SendLevelCompleteEvent(LevelLoader.Instance.LevelIndex + 1);
         StartCoroutine(EnableCover());
     }
 }

@@ -44,7 +44,7 @@ public class LevelLoader : MonoBehaviour
         {
             return;
         }
-
+        
         DontDestroyOnLoad(gameObject);
         Load();
     }
@@ -56,6 +56,7 @@ public class LevelLoader : MonoBehaviour
 
     private void Load()
     {
+        EventsSender.Instance.SendLevelStartEvent(LevelIndex + 1);
         SceneManager.LoadScene(_levelNames[_sceneIndex]);
     }
 }
