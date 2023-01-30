@@ -14,6 +14,13 @@
       "dependencies": {},
       "hash": "da5c18002d614cc1ceed78ce05d195c193de0212"
     },
+    "com.agava.yandexmetrica": {
+      "version": "https://github.com/forcepusher/com.agava.yandexmetrica.git#1.1.0",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "2937380390844fc76ae88d6cd570a19ee86ac2e2"
+    },
     "com.unity.cinemachine": {
       "version": "2.8.9",
       "depth": 0,
