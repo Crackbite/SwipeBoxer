@@ -9513,6 +9513,10 @@ PrefabInstance:
       propertyPath: _playerMovement
       value: 
       objectReference: {fileID: 24537424}
+    - target: {fileID: 7205175889325662432, guid: 371594717ee4350458f7fb2ce5803599, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -5.1
+      objectReference: {fileID: 0}
     - target: {fileID: 7205175889325662447, guid: 371594717ee4350458f7fb2ce5803599, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -10863,7 +10867,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7287638420055713719, guid: aa70a70710a74eb48baee8b37c5823a2, type: 3}
       propertyPath: _power
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8737556677351331985, guid: aa70a70710a74eb48baee8b37c5823a2, type: 3}
       propertyPath: m_Name
