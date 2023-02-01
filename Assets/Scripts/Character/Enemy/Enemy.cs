@@ -13,12 +13,13 @@ public class Enemy : MonoBehaviour, ICharacter
 
     private EnemyAnimator _animator;
     private Collider[] _childrenColliders;
-    private bool _died;
     private Power _power;
 
     public event UnityAction Died;
     public event UnityAction<Vector3> PreDied;
     public event UnityAction<Vector3> Won;
+
+    public bool Dead { get; private set; }
 
     private void Start()
     {
@@ -27,16 +28,20 @@ public class Enemy : MonoBehaviour, ICharacter
         _animator = GetComponent<EnemyAnimator>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
         if (collision.gameObject.TryGetComponent(out HitArea hitArea) == false)
         {
             return;
         }
 
-        IgnoreCollisionWith(collision.collider);
+        if (Dead)
+        {
+            IgnoreCollisionWith(collision.collider);
+            return;
+        }
 
-        if (_died)
+        if (CanTakeHit(hitArea) == false)
         {
             return;
         }
@@ -47,6 +52,8 @@ public class Enemy : MonoBehaviour, ICharacter
         {
             return;
         }
+
+        IgnoreCollisionWith(collision.collider);
 
         if (strikerPower.Current < _power.Current)
         {
@@ -65,7 +72,7 @@ public class Enemy : MonoBehaviour, ICharacter
         Vector3 hitPosition = collision.GetContact(collision.contactCount - 1).point;
         PreDied?.Invoke(hitPosition);
 
-        _died = true;
+        Dead = true;
         Died?.Invoke();
 
         Destroy(_powerCanvas.gameObject);
@@ -77,6 +84,46 @@ public class Enemy : MonoBehaviour, ICharacter
         TakeHit(collision);
 
         StartCoroutine(HideBody());
+    }
+
+    private bool CanTakeHit(HitArea hitArea)
+    {
+        const float RaycastRaise = 0.2f;
+        const int RaycastHitBuffer = 128;
+
+        Vector3 position = transform.position;
+        position.y += RaycastRaise;
+
+        var raycastHits = new RaycastHit[RaycastHitBuffer];
+        float distance = Vector3.Distance(position, hitArea.transform.position);
+        Vector3 direction = hitArea.transform.forward * -1;
+
+        Physics.RaycastNonAlloc(position, direction, raycastHits, distance);
+
+        foreach (RaycastHit raycastHit in raycastHits)
+        {
+            Collider raycastCollider = raycastHit.collider;
+
+            if (raycastCollider == null)
+            {
+                continue;
+            }
+
+            if (raycastCollider.TryGetComponent(out InactiveRoof _))
+            {
+                return false;
+            }
+
+            if (raycastCollider.TryGetComponent(out Enemy enemy))
+            {
+                if (enemy.Dead == false)
+                {
+                    return false;
+                }
+            }
+        }
+
+        return true;
     }
 
     private void ChangeBodyToDead()
