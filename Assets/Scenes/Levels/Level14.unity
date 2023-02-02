@@ -9299,6 +9299,10 @@ PrefabInstance:
       propertyPath: _playerMovement
       value: 
       objectReference: {fileID: 24537424}
+    - target: {fileID: 7205175889325662432, guid: 371594717ee4350458f7fb2ce5803599, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -4.8
+      objectReference: {fileID: 0}
     - target: {fileID: 7205175889325662447, guid: 371594717ee4350458f7fb2ce5803599, type: 3}
       propertyPath: m_IsActive
       value: 1
