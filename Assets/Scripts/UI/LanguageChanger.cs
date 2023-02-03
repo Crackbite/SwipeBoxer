@@ -12,7 +12,10 @@ public class LanguageChanger : MonoBehaviour
 #endif
 
 #pragma warning disable CS0162
-        yield return YandexGamesSdk.Initialize();
+        if (YandexGamesSdk.IsInitialized == false)
+        {
+            yield break;
+        }
 
         string lang = YandexGamesSdk.Environment.i18n.lang switch
         {
