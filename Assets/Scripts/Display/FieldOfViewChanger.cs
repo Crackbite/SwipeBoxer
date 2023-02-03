@@ -1,28 +1,26 @@
 using Cinemachine;
 using UnityEngine;
 
-[RequireComponent(typeof(Renderer))]
+[RequireComponent(typeof(CinemachineVirtualCamera))]
 public class FieldOfViewChanger : MonoBehaviour
 {
-    [SerializeField] private CinemachineVirtualCamera _mainCamera;
-    [SerializeField] private float _distanceSpeed = 10f;
-    [SerializeField] private float _distanceLimit = 65f;
+    [SerializeField] private Camera _mainCamera;
+    [SerializeField] private float _fixedHorizontalFOV = 34f;
 
-    private bool _isVisible;
+    private float _initialFOV;
+    private CinemachineVirtualCamera _virtualCamera;
 
-    private void Update()
+    private void Awake()
     {
-        if (_isVisible || CinemachineCore.Instance.IsLive(_mainCamera) == false)
-        {
-            return;
-        }
-
-        _isVisible = _mainCamera.m_Lens.FieldOfView > _distanceLimit;
-        _mainCamera.m_Lens.FieldOfView += Time.deltaTime * _distanceSpeed;
+        _virtualCamera = GetComponent<CinemachineVirtualCamera>();
+        _initialFOV = _virtualCamera.m_Lens.FieldOfView;
     }
 
-    private void OnBecameVisible()
+    private void Start()
     {
-        _isVisible = true;
+        float fieldOfView = 2 * Mathf.Atan(Mathf.Tan(_fixedHorizontalFOV * Mathf.Deg2Rad * 0.5f) / _mainCamera.aspect)
+                              * Mathf.Rad2Deg;
+
+        _virtualCamera.m_Lens.FieldOfView = fieldOfView < _initialFOV ? _initialFOV : fieldOfView;
     }
 }
