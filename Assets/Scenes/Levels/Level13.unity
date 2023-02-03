@@ -9381,6 +9381,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5006314961177604731, guid: 371594717ee4350458f7fb2ce5803599, type: 3}
+      propertyPath: _fixedHorizontalFOV
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 5085266223922025696, guid: 371594717ee4350458f7fb2ce5803599, type: 3}
       propertyPath: m_Follow
       value: 
