@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
@@ -7,9 +8,13 @@ public class LevelLoader : MonoBehaviour
 
     private int _sceneIndex;
 
-    public static LevelLoader Instance { get; private set; }
+    public event UnityAction<string> Loaded;
+    public event UnityAction<string> Reloaded;
 
+    public static LevelLoader Instance { get; private set; }
     public int LevelIndex { get; private set; }
+
+    private string LevelName => _levelNames[_sceneIndex];
 
     public void LoadNext()
     {
@@ -17,11 +22,13 @@ public class LevelLoader : MonoBehaviour
 
         _sceneIndex = GetSceneIndex();
         Load();
+        Loaded?.Invoke(LevelName);
     }
 
     public void Reload()
     {
         Load();
+        Reloaded?.Invoke(LevelName);
     }
 
     private void Awake()
@@ -44,9 +51,10 @@ public class LevelLoader : MonoBehaviour
         {
             return;
         }
-        
+
         DontDestroyOnLoad(gameObject);
         Load();
+        Loaded?.Invoke(LevelName);
     }
 
     private int GetSceneIndex()
@@ -57,6 +65,6 @@ public class LevelLoader : MonoBehaviour
     private void Load()
     {
         EventsSender.Instance.SendLevelStartEvent(LevelIndex + 1);
-        SceneManager.LoadScene(_levelNames[_sceneIndex]);
+        SceneManager.LoadScene(LevelName);
     }
 }
