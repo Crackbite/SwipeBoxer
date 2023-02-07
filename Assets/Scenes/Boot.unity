@@ -366,7 +366,7 @@ MonoBehaviour:
   _levelLoader: {fileID: 1498615757}
   _excludeOnLevels:
   - Level1
-  _excludeAfterReload: 1
+  _outputInfoToLog: 1
 --- !u!4 &1903290475
 Transform:
   m_ObjectHideFlags: 0

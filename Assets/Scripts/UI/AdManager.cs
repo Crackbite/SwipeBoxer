@@ -7,6 +7,7 @@ public class AdManager : MonoBehaviour
 {
     [SerializeField] private LevelLoader _levelLoader;
     [SerializeField] private string[] _excludeOnLevels;
+    [SerializeField] private bool _outputInfoToLog;
 
     private void OnEnable()
     {
@@ -30,6 +31,14 @@ public class AdManager : MonoBehaviour
         _levelLoader.Reloaded -= LevelOnLoaded;
     }
 
+    private void EnableGame(bool value)
+    {
+        Time.timeScale = value ? 1 : 0;
+
+        AudioListener.pause = value == false;
+        AudioListener.volume = value ? 1f : 0f;
+    }
+
     private void LevelOnLoaded(string levelName)
     {
         if (_excludeOnLevels.Contains(levelName))
@@ -37,12 +46,27 @@ public class AdManager : MonoBehaviour
             return;
         }
 
+        if (_outputInfoToLog)
+        {
+            Debug.Log("Ad display");
+        }
+
 #if !UNITY_WEBGL || UNITY_EDITOR
         return;
 #endif
 
 #pragma warning disable CS0162
-        InterstitialAd.Show(() => Time.timeScale = 0, _ => Time.timeScale = 1);
+        InterstitialAd.Show(OnOpenAd, OnCloseAd);
 #pragma warning restore CS0162
+    }
+
+    private void OnCloseAd(bool wasShown)
+    {
+        EnableGame(true);
+    }
+
+    private void OnOpenAd()
+    {
+        EnableGame(false);
     }
 }
