@@ -1,11 +1,14 @@
 using System.Linq;
 using Agava.YandexGames;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class AdManager : MonoBehaviour
 {
     [SerializeField] private LevelLoader _levelLoader;
+    [SerializeField] private AudioMixerSnapshot _normal;
+    [SerializeField] private AudioMixerSnapshot _mute;
     [SerializeField] private string[] _excludeOnLevels;
     [SerializeField] private bool _outputInfoToLog;
 
@@ -33,10 +36,16 @@ public class AdManager : MonoBehaviour
 
     private void EnableGame(bool value)
     {
-        Time.timeScale = value ? 1 : 0;
+        if (value)
+        {
+            _normal.TransitionTo(0f);
+        }
+        else
+        {
+            _mute.TransitionTo(0f);
+        }
 
-        AudioListener.pause = value == false;
-        AudioListener.volume = value ? 1f : 0f;
+        Time.timeScale = value ? 1 : 0;
     }
 
     private void LevelOnLoaded(string levelName)

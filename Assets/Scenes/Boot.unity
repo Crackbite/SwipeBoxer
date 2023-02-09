@@ -364,6 +364,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelLoader: {fileID: 1498615757}
+  _normal: {fileID: 24500006, guid: 60a97e6fe3ea5e445a35d08863a6ac1b, type: 2}
+  _mute: {fileID: -7764645131117173851, guid: 60a97e6fe3ea5e445a35d08863a6ac1b, type: 2}
   _excludeOnLevels:
   - Level1
   - Level3
