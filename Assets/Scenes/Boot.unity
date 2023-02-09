@@ -366,6 +366,10 @@ MonoBehaviour:
   _levelLoader: {fileID: 1498615757}
   _excludeOnLevels:
   - Level1
+  - Level3
+  - Level5
+  - Level7
+  - Level9
   _outputInfoToLog: 1
 --- !u!4 &1903290475
 Transform:
