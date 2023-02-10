@@ -10,6 +10,7 @@ public class WinCover : Screen
 
     private Animator _animator;
     private AudioSource _audioSource;
+    private bool _canGoToNextLevel;
 
     private void OnEnable()
     {
@@ -27,6 +28,14 @@ public class WinCover : Screen
         _animator.enabled = false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Return))
+        {
+            GoToNextLevel();
+        }
+    }
+
     private void OnDisable()
     {
         _playerMovement.FinishReached -= PlayerMovementOnFinishReached;
@@ -35,7 +44,7 @@ public class WinCover : Screen
 
     protected override void OnButtonClick()
     {
-        LevelLoader.Instance.LoadNext();
+        GoToNextLevel();
     }
 
     private IEnumerator EnableCover()
@@ -46,6 +55,15 @@ public class WinCover : Screen
         Open();
         _animator.enabled = true;
         _confetti.gameObject.SetActive(true);
+        _canGoToNextLevel = true;
+    }
+
+    private void GoToNextLevel()
+    {
+        if (_canGoToNextLevel)
+        {
+            LevelLoader.Instance.LoadNext();
+        }
     }
 
     private void PlayerMovementOnFinishReached()

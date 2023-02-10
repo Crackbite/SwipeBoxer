@@ -9,6 +9,7 @@ public class LoseCover : Screen
 
     private Animator _animator;
     private AudioSource _audioSource;
+    private bool _canReloadLevel;
 
     private void OnEnable()
     {
@@ -25,6 +26,14 @@ public class LoseCover : Screen
         _animator.enabled = false;
     }
 
+    private void Update()
+    {
+        if (Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.KeypadEnter) || Input.GetKey(KeyCode.Return))
+        {
+            ReloadLevel();
+        }
+    }
+
     private void OnDisable()
     {
         _player.Died -= PlayerOnDied;
@@ -33,7 +42,7 @@ public class LoseCover : Screen
 
     protected override void OnButtonClick()
     {
-        LevelLoader.Instance.Reload();
+        ReloadLevel();
     }
 
     private IEnumerator EnableCover()
@@ -43,11 +52,20 @@ public class LoseCover : Screen
         _audioSource.Play();
         Open();
         _animator.enabled = true;
+        _canReloadLevel = true;
     }
 
     private void PlayerOnDied()
     {
         EventsSender.Instance.SendLevelFailEvent(LevelLoader.Instance.LevelIndex + 1);
         StartCoroutine(EnableCover());
+    }
+
+    private void ReloadLevel()
+    {
+        if (_canReloadLevel)
+        {
+            LevelLoader.Instance.Reload();
+        }
     }
 }
