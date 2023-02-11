@@ -12,6 +12,8 @@ public class AdManager : MonoBehaviour
     [SerializeField] private string[] _excludeOnLevels;
     [SerializeField] private bool _outputInfoToLog;
 
+    private bool _canResume;
+
     private void OnEnable()
     {
         _levelLoader.Loaded += LevelOnLoaded;
@@ -28,6 +30,14 @@ public class AdManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
+    private void Update()
+    {
+        if (_canResume && Input.GetMouseButtonDown(0))
+        {
+            EnableGame(true);
+        }
+    }
+
     private void OnDisable()
     {
         _levelLoader.Loaded -= LevelOnLoaded;
@@ -38,11 +48,17 @@ public class AdManager : MonoBehaviour
     {
         if (value)
         {
-            _normal.TransitionTo(0f);
+            _canResume = false;
+
+            if (GameSettings.SoundDisabled == false)
+            {
+                _normal.TransitionTo(0f);
+            }
         }
         else
         {
             _mute.TransitionTo(0f);
+            _canResume = true;
         }
 
         Time.timeScale = value ? 1 : 0;
@@ -65,11 +81,21 @@ public class AdManager : MonoBehaviour
 #endif
 
 #pragma warning disable CS0162
-        InterstitialAd.Show(OnOpenAd, OnCloseAd);
+        InterstitialAd.Show(OnOpenAd, OnCloseAd, OnErrorAd, OnOfflineAd);
 #pragma warning restore CS0162
     }
 
     private void OnCloseAd(bool wasShown)
+    {
+        EnableGame(true);
+    }
+
+    private void OnErrorAd(string errorMessage)
+    {
+        EnableGame(true);
+    }
+
+    private void OnOfflineAd()
     {
         EnableGame(true);
     }
